@@ -1,0 +1,102 @@
+AI
+ai
+GPT
+人工智能
+智能
+gpt
+ChatGPT
+chatgpt
+机器人
+Robot
+Artificial Intelligence
+artificial intelligence
+机器学习
+machine learning
+Deep Learning
+deep learning
+Neural Network
+neural network
+自然语言处理
+Natural Language Processing
+NLP
+nlp
+Computer Vision
+computer vision
+自动驾驶
+Autonomous Driving
+Reinforcement Learning
+reinforcement learning
+Algorithm
+algorithm
+Big Data
+big data
+Speech Recognition
+speech recognition
+Data Mining
+data mining
+Pattern Recognition
+pattern recognition
+Smart Contracts
+smart contracts
+Virtual Assistant
+virtual assistant
+Cloud Computing
+cloud computing
+Image Processing
+image processing
+Predictive Analytics
+predictive analytics
+Drone
+drone
+Recommendation System
+recommendation system
+Data Science
+data science
+Generative Model
+generative model
+Quantum Computing
+quantum computing
+Transfer Learning
+transfer learning
+Augmented Reality
+augmented reality
+Virtual Reality
+virtual reality
+Internet of Things
+IoT
+iot
+Edge Computing
+edge computing
+Intelligent Transportation
+intelligent transportation
+Smart Agriculture
+smart agriculture
+Image Recognition
+image recognition
+Machine Translation
+machine translation
+Multimodal
+multimodal
+Unsupervised Learning
+unsupervised learning
+Generative Adversarial Network
+GAN
+gan
+Image Classification
+image classification
+Logistic Regression
+logistic regression
+Support Vector Machine
+support vector machine
+Random Forest
+random forest
+Convolutional Neural Network
+CNN
+cnn
+Recurrent Neural Network
+RNN
+rnn
+Knowledge Graph
+knowledge graph
+Semantic Segmentation
+semantic segmentation
