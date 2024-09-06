@@ -4,8 +4,12 @@ import com.flyingpig.bilibilispider.constant.FileName;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.util.UriComponentsBuilder;
-import java.io.*;
+import okhttp3.HttpUrl;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,8 +17,10 @@ import java.util.concurrent.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.Inflater;
+
 import static com.flyingpig.bilibilispider.constant.UrlConstant.*;
-import static com.flyingpig.bilibilispider.util.RequestUtil.*;
+import static com.flyingpig.bilibilispider.util.RequestUtil.requestToGetBodyBytes;
+import static com.flyingpig.bilibilispider.util.RequestUtil.requesttToGetBodyString;
 
 @Slf4j
 public class BilibiliSpiderTask {
@@ -31,11 +37,13 @@ public class BilibiliSpiderTask {
                 final int page = j;
                 Future<List<Long>> future = executor.submit(() -> {
                     List<Long> pageCidList = new ArrayList<>();
-                    String searchUrl = UriComponentsBuilder.fromHttpUrl(BILIBILI_SEARCH_URL)
-                            .queryParam("keyword", keyword)
-                            .queryParam("search_type", "video")
-                            .queryParam("page", page)
-                            .queryParam("page_size", 50).toUriString();
+
+                    String searchUrl = HttpUrl.parse(BILIBILI_SEARCH_URL).newBuilder()
+                            .addQueryParameter("keyword", keyword)
+                            .addQueryParameter("search_type", "video")
+                            .addQueryParameter("page", String.valueOf(page))
+                            .addQueryParameter("page_size", String.valueOf(50))
+                            .build().toString();
 
                     log.info("爬取第 {} 页", page);
 
@@ -47,9 +55,11 @@ public class BilibiliSpiderTask {
                         String bvid = searchResultArray.get(i).getAsJsonObject().get("bvid").getAsString();
                         log.info("视频bvid: {}", bvid);
 
-                        String getCidUrl = UriComponentsBuilder.fromHttpUrl(BILIBILI_GETCID_URL)
-                                .queryParam("bvid", bvid)
-                                .queryParam("jsonp", "jsonp").toUriString();
+                        String getCidUrl = HttpUrl.parse(BILIBILI_GETCID_URL).newBuilder()
+                                .addQueryParameter("bvid", bvid)
+                                .addQueryParameter("jsonp", "jsonp")
+                                .build()
+                                .toString();
 
                         Long cid = JsonParser.parseString(requesttToGetBodyString(getCidUrl))
                                 .getAsJsonObject().getAsJsonArray("data")
