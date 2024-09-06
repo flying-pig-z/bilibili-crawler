@@ -1,6 +1,7 @@
 package com.flyingpig.bilibilispider.additionalWork;
 
 
+import com.flyingpig.bilibilispider.constant.HeaderConstant;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,7 +23,7 @@ public class FzuNewsCrawler {
     private static final String BASE_URL = "https://info22.fzu.edu.cn/lm_list.jsp?";
     private static final String NEWS_URL = BASE_URL + "totalpage=948&PAGENUM=%d&urltype=tree.TreeTempUrl&wbtreeid=1460";
 
-
+    private static final String CONTENT_URL = "https://info22.fzu.edu.cn/content.jsp?";
     // 爬取福大通知和文件系统
     public List<FzuNews> crawlFzuNotificationsAndFileSystems(String newsBeginTime, String newsEndTime) throws Exception {
         List<FzuNews> fzuNewsList = new ArrayList<>(); // 保存新闻列表
@@ -61,7 +62,7 @@ public class FzuNewsCrawler {
                     // 获取新闻的作者、标题和正文链接
                     String author = newsElement.getElementsByTag("a").eq(0).text();
                     String title = newsElement.getElementsByTag("a").eq(1).text();
-                    String textHref = BASE_URL + newsElement.getElementsByTag("a").get(1).attr("href");
+                    String textHref = CONTENT_URL + newsElement.getElementsByTag("a").get(1).attr("href");
                     String text = fetchNewsText(textHref);
 
                     // 将新闻信息写入文件中
@@ -89,7 +90,8 @@ public class FzuNewsCrawler {
     // 获取新闻正文内容
     private String fetchNewsText(String textHref) throws Exception {
         StringBuilder textBuilder = new StringBuilder(); // 使用StringBuilder拼接正文内容
-        Document document = Jsoup.connect(textHref).get();
+        Document document = Jsoup.connect(textHref)
+                .header("User-Agent", HeaderConstant.USER_AGENT).get();
 
         // 获取所有<p>标签中的正文
         Elements paragraphs = document.getElementsByTag("p");
