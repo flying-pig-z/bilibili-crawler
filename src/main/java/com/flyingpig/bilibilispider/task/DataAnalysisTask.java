@@ -38,6 +38,7 @@ public class DataAnalysisTask {
     }
 
 
+
     public static HashMap<String, Integer> getTop8BarrageListAboutAI() {
 
         System.out.println(aiKeywords.size());
@@ -124,5 +125,7 @@ public class DataAnalysisTask {
 
         return new HashMap<>(sortedMap);
     }
+
+
 
 }

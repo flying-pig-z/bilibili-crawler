@@ -53,7 +53,6 @@ public class BilibiliSpiderTask {
 
                     for (int i = 0; i < searchResultArray.size(); i++) {
                         String bvid = searchResultArray.get(i).getAsJsonObject().get("bvid").getAsString();
-                        log.info("视频bvid: {}", bvid);
 
                         String getCidUrl = HttpUrl.parse(BILIBILI_GETCID_URL).newBuilder()
                                 .addQueryParameter("bvid", bvid)
@@ -153,6 +152,7 @@ public class BilibiliSpiderTask {
             }
             decompressData = outputStream.toByteArray();
         } catch (Exception e) {
+            log.error("解压数据失败", e);
         } finally {
             outputStream.close();
         }
