@@ -9,4 +9,7 @@ public class UrlConstant {
     public static final String BILIBILI_GETCID_URL = "https://api.bilibili.com/x/player/pagelist";
 
     public static final String DM_URL = "https://comment.bilibili.com/";
+
+    public static final String REAPLY_URL = "https://api.bilibili.com/x/v2/reply/main";
+
 }
